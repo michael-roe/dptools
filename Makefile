@@ -9,3 +9,6 @@ dpfoot.o: dpfoot.c
 
 footnote.o: footnote.c
 	gcc -c footnote.c
+
+entity.o: entity.c entity.h
+	gcc -c entity.c
