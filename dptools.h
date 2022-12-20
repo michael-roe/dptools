@@ -47,3 +47,7 @@ void set_drama_brackets(int val);
 void flush_tags(FILE *outfile);
 
 void found_illustration();
+
+int get_footnote_mode();
+
+void finish_drama_bracket();

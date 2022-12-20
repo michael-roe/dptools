@@ -1,8 +1,10 @@
-all: dpfoot
+all: dpfoot dphtml
+
+dphtml: dphtml.o output.o translit.o entity.o
+	gcc -o dphtml dphtml.o output.o translit.o entity.o
 
 dpfoot: dpfoot.o footnote.o
 	gcc -o dpfoot dpfoot.o footnote.o
-
 
 dpfoot.o: dpfoot.c
 	gcc -c dpfoot.c
