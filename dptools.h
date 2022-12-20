@@ -34,6 +34,8 @@ void write_poetry_line(FILE *outfile, wchar_t *str);
 
 void write_greek(FILE *outfile, wchar_t *str);
 
+void flush_greek(FILE *outfile);
+
 void report_error(wchar_t *msg, wchar_t *line);
 
 int get_pagenumber();
@@ -43,3 +45,5 @@ void set_yogh_mode();
 void set_drama_brackets(int val);
 
 void flush_tags(FILE *outfile);
+
+void found_illustration();

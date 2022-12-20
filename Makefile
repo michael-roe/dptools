@@ -15,3 +15,6 @@ entity.o: entity.c entity.h
 
 translit.o: translit.c dptools.h
 	gcc -c translit.c
+
+output.o: output.c dptools.h
+	gcc -c output.c
