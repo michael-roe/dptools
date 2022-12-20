@@ -12,3 +12,6 @@ footnote.o: footnote.c
 
 entity.o: entity.c entity.h
 	gcc -c entity.c
+
+translit.o: translit.c dptools.h
+	gcc -c translit.c
