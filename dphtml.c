@@ -296,25 +296,22 @@ void start_paragraph()
       }
       else
       {
-        fwprintf(outfile, L"<h3>\n");
-        par_type = PAR_TYPE_SECTION;
         section++;
-        if (number_sections)
-          fwprintf(outfile, L"<a name=\"section%d_%d\"></a>\n",
-            chapter, section);
+	if (number_sections)
+	  fwprintf(outfile, L"<h3 id=\"section%d_%d\">\n", chapter, section);
+	else
+          fwprintf(outfile, L"<h3>\n");
+        par_type = PAR_TYPE_SECTION;
       }
       break;
     case 4:
-      fwprintf(outfile, L"<h2>\n");
       chapter++;
+      fwprintf(outfile, L"<h2 id=\"chapter%d\">\n", chapter-chapter_offset);
       section = 1; 
       /* Start section numbering at 2, because the ambiguous syntax means
        *  that the first section in a chapter will often be missed, and
        * will have to be added manually.
        */
-      fwprintf(outfile,
-        L"<a name=\"chapter%d\"></a>\n",
-        chapter-chapter_offset);
       par_type = PAR_TYPE_CHAPTER;
       break;
     default:
