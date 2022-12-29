@@ -237,6 +237,7 @@ void output_header()
 {
   fwprintf(outfile, L"<!DOCTYPE html>\n");
 
+  fwprintf(outfile, L"<html lang=\"en\">\n");
   fwprintf(outfile, L"<head>\n");
   fwprintf(outfile, L"<title>Title goes here</title>\n");
   fwprintf(outfile, L"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
