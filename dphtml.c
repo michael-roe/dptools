@@ -239,7 +239,7 @@ void output_header()
 
   fwprintf(outfile, L"<head>\n");
   fwprintf(outfile, L"<title>Title goes here</title>\n");
-  fwprintf(outfile, L"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
+  fwprintf(outfile, L"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
   style_sheet();
   fwprintf(outfile, L"</head>\n");
   fwprintf(outfile, L"<body>\n");
