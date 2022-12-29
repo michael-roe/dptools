@@ -266,7 +266,7 @@ void start_paragraph()
         }
         else if (wcscmp(buff, L"<tb>") == 0)
         {
-          fwprintf(outfile, L"<hr />");
+          fwprintf(outfile, L"<hr>");
           par_type = PAR_TYPE_RULE;
         }
         else if (poetry_mode)

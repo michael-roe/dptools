@@ -561,7 +561,7 @@ void write_line(FILE *outfile, wchar_t *str)
         else if (wcsncmp(cp, L"[Illustration]", 14) == 0)
         {
           cp += 14;
-          fwprintf(outfile, L"<img src=\"images/missing.jpg\">\n");
+          fwprintf(outfile, L"<img src=\"images/missing.jpg\" alt=\"Missing image\">\n");
           found_illustration();
         }
         else if (wcsncmp(cp, L"[Illustration:", 14) == 0)
@@ -569,7 +569,7 @@ void write_line(FILE *outfile, wchar_t *str)
           cp += 14;
           while (*cp == ' ')
             cp++;
-          fwprintf(outfile, L"<img src=\"images/missing.jpg\">\n");
+          fwprintf(outfile, L"<img src=\"images/missing.jpg\" alt=\"Missing image\">\n");
           fwprintf(outfile, L"</p>\n");
           fwprintf(outfile, L"<p class=\"caption\">\n");
           push_tag(TAG_ILLUSTRATION);
@@ -812,7 +812,7 @@ void write_poetry_line(FILE *outfile, wchar_t *str)
   {
     pop_tag();
   }
-  fwprintf(outfile, L"<br />");
+  fwprintf(outfile, L"<br>");
 }
 
 void finish_drama_bracket()
