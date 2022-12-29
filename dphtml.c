@@ -81,7 +81,7 @@ FILE *get_outfile()
 
 void style_sheet()
 {
-  fwprintf(outfile, L"<style type=\"text/css\">\n");
+  fwprintf(outfile, L"<style>\n");
 #if 0
   fwprintf(outfile, L"/*<![CDATA[  XML blockout */\n");
   fwprintf(outfile, L"<!--\n");
