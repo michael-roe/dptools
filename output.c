@@ -30,6 +30,8 @@ static int footnote_mode = 0;
 
 static int sidenote_mode = 0;
 
+static int use_html_entities = 0;
+
 void set_yogh_mode(int val)
 {
   fwprintf(stderr, L"set_yogh_mode\n");
@@ -243,6 +245,9 @@ void write_line(FILE *outfile, wchar_t *str)
   {
     switch (*cp)
     {
+      /*
+       * These three characters are special in HTML, and must be escaped.
+       */
       case '"':
         fwprintf(outfile, L"&quot;");
         cp++;
@@ -255,20 +260,36 @@ void write_line(FILE *outfile, wchar_t *str)
         fwprintf(outfile, L"&gt;");
         cp++;
         break;
+      /*
+       * Other characters are valid in HTML, but can be escaped if we
+       * want the file to be ISO LATIN 1 only.
+       */
       case 0x2018:
-        fwprintf(outfile, L"&lsquo;");
+        if (use_html_entities)
+	  fwprintf(outfile, L"&lsquo;");
+	else
+          fputwc(*cp, outfile);
         cp++;
         break;
       case 0x2019:
-        fwprintf(outfile, L"&rsquo;");
+	if (use_html_entities)
+          fwprintf(outfile, L"&rsquo;");
+	else
+          fputwc(*cp, outfile);
         cp++;
         break;
       case 0x201c:
-        fwprintf(outfile, L"&ldquo;");
+	if (use_html_entities)
+          fwprintf(outfile, L"&ldquo;");
+	else
+          fputwc(*cp, outfile);
         cp++;
         break;
       case 0x201d:
-        fwprintf(outfile, L"&rdquo;");
+	if (use_html_entities)
+          fwprintf(outfile, L"&rdquo;");
+	else
+	  fputwc(*cp, outfile);
         cp++;
         break;
       case '^':
@@ -522,7 +543,7 @@ void write_line(FILE *outfile, wchar_t *str)
         }
         else if (e = find_entity(cp, &len))
         {
-          if (e->html)
+          if (use_html_entities && e->html)
             fwprintf(outfile, L"%ls", e->html);
           else
             fwprintf(outfile, L"&#x%04x;", e->unicode);
