@@ -50,4 +50,6 @@ void found_illustration();
 
 int get_footnote_mode();
 
+int get_sidenote_mode();
+
 void finish_drama_bracket();
