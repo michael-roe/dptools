@@ -420,14 +420,14 @@ void check_open_footnote()
     || (wcsncmp(buff, L"[Footnote ", 10) == 0)
     || (wcsncmp(buff, L"*[Footnote ", 11) == 0))
   {
-    fwprintf(outfile, L"<div class=\"footnote\">\n");
+    fwprintf(outfile, L"<section role=\"doc-footnote\" class=\"footnote\">\n");
     footnote_mode = 1;
   }
 
   if ((wcsncmp(buff, L"[Sidenote:", 10) == 0)
     || (wcsncmp(buff, L"*[Sidenote:", 11) == 0))
   {
-    fwprintf(outfile, L"<div class=\"sidenote\">\n");
+    fwprintf(outfile, L"<section class=\"sidenote\">\n");
     sidenote_mode = 1;
   }
 }
@@ -436,13 +436,13 @@ void check_close_footnote()
 {
   if (footnote_mode && (get_footnote_mode() == 0))
   {
-    fwprintf(outfile, L"</div>\n");
+    fwprintf(outfile, L"</section>\n");
     footnote_mode = 0;
   }
 
   if (sidenote_mode && (get_sidenote_mode() == 0))
   {
-    fwprintf(outfile, L"</div>\n");
+    fwprintf(outfile, L"</section>\n");
     sidenote_mode = 0;
   }
 }
