@@ -191,9 +191,9 @@ void output_pagenumber(int number_pages, int page, int front_pages, int preface_
       {
       }
       else if (page <= front_pages+preface_pages)
-        fwprintf(outfile, L"<a name=\"preface%d\"></a><span class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-front_pages, page-front_pages);
+        fwprintf(outfile, L"<a name=\"preface%d\"></a><span role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-front_pages, page-front_pages);
       else
-        fwprintf(outfile, L"<a name=\"page%d\"></a><span class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-preface_pages-front_pages+page_offset, page-preface_pages-front_pages+page_offset);
+        fwprintf(outfile, L"<a name=\"page%d\"></a><span role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-preface_pages-front_pages+page_offset, page-preface_pages-front_pages+page_offset);
     }
     else
     {
@@ -201,9 +201,9 @@ void output_pagenumber(int number_pages, int page, int front_pages, int preface_
       {
       }
       else if (page-volume_pages <= front_pages+preface_pages)
-        fwprintf(outfile, L"<a name=\"preface_2_%d\"></a><span class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-front_pages, page-volume_pages-front_pages);
+        fwprintf(outfile, L"<a name=\"preface_2_%d\"></a><span role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-front_pages, page-volume_pages-front_pages);
       else
-        fwprintf(outfile, L"<a name=\"page_2_%d\"></a><span class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-preface_pages-front_pages, page-volume_pages-preface_pages-front_pages);
+        fwprintf(outfile, L"<a name=\"page_2_%d\"></a><span role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-preface_pages-front_pages, page-volume_pages-preface_pages-front_pages);
     }
   }
   else
