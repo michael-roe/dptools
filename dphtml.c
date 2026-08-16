@@ -652,7 +652,7 @@ int para_open = 0;
   }
 
   /*
-   ( Enf of document.
+   * End of document.
    * Close any tags that are still open.
    */
 
