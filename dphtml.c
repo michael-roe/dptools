@@ -74,6 +74,8 @@ int number_sections = 1;
 /* Set if full-page illustrations don't have page numbers */
 static int unnumbered_illustrations = 0; 
 
+void check_close_footnote();
+
 FILE *get_outfile()
 {
   return outfile;
@@ -342,6 +344,8 @@ void end_document()
   }
   if (quote_mode == 2)
     fwprintf(outfile, L"</blockquote>\n");
+
+  check_close_footnote();
 
   fwprintf(outfile, L"</body>\n");
   fwprintf(outfile, L"</html>\n");
