@@ -136,7 +136,7 @@ int top_tag()
 void flush_tags(FILE *outfile)
 {
   /* In drama formatting, it's OK to have one square bracket that isn't
-   * clsoed by the end of the page.
+   * closed by the end of the page.
    */
   if (drama_brackets && (top_tag() == TAG_UNKNOWN))
     pop_tag();
