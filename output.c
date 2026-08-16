@@ -514,7 +514,7 @@ void write_line(FILE *outfile, wchar_t *str)
           /* Each time the footnote numbering restarts from 1, increment
            * footnote_section, so that each footnote gets a unique label.
            */
-          fwprintf(outfile, L"<a name=\"ref_%d_%d\"></a><a role=\"doc-noteref\" href=\"#footnote_%d_%d\" class=\"fnref\">[%d]</a>", footnote_section, footnote_num, footnote_section, footnote_num, footnote_num);
+          fwprintf(outfile, L"<a id=\"ref_%d_%d\" role=\"doc-noteref\" href=\"#footnote_%d_%d\" class=\"fnref\">[%d]</a>", footnote_section, footnote_num, footnote_section, footnote_num, footnote_num);
           cp += len;
         }
         else if ((cp[1] != '\0') && (cp[2] == ']')
@@ -626,11 +626,9 @@ void write_line(FILE *outfile, wchar_t *str)
           while (*cp == ' ')
             cp++;
           footnote_counter++;
-          fwprintf(outfile,
-            L"<a name=\"footnote_%d_%d\"></a>",
+          fwprintf(outfile, L"<a id=\"footnote_%d_%d\" href=\"#ref_%d_%d\">",
             footnote_section,
-            footnote_counter);
-          fwprintf(outfile, L"<a href=\"#ref_%d_%d\">",
+            footnote_counter,
             footnote_section,
             footnote_counter);
           while ((*cp != '\0') && (*cp != ':'))
