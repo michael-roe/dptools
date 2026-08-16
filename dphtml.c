@@ -62,7 +62,9 @@ static FILE *outfile;
 static int poetry_mode = 0;
 static int quote_mode = 0;
 static int footnote_mode = 0; /* This is not the same as footnote_mode in output.c */
+static int footnote_start = 0;
 static int sidenote_mode = 0;
+static int sidenote_start = 0;
 static int blank_lines = 0;
 static int par_type = 0;
 static wchar_t buff[1024];
@@ -279,7 +281,23 @@ void start_paragraph()
         }
         else
         {
-          fwprintf(outfile, L"<p>\n");
+          /*
+           * If this is the first paragraph of a footnote or sidenote,
+           * delay the <p> tag so that we can wrap the whole footnote
+           * in a <div>.
+           */
+          if (footnote_start)
+          {
+            footnote_start = 0;
+          }
+          else if (sidenote_start)
+          {
+            sidenote_start = 0;
+          }
+          else
+          { 
+            fwprintf(outfile, L"<p>\n");
+          }
           par_type = PAR_TYPE_NORMAL;
         }
       }
@@ -424,15 +442,17 @@ void check_open_footnote()
     || (wcsncmp(buff, L"[Footnote ", 10) == 0)
     || (wcsncmp(buff, L"*[Footnote ", 11) == 0))
   {
-    fwprintf(outfile, L"<div role=\"doc-footnote\" class=\"footnote\">\n");
+    /* fwprintf(outfile, L"<div role=\"doc-footnote\" data-epub-type=\"footnote\" class=\"footnote\">\n"); */
     footnote_mode = 1;
+    footnote_start = 1;
   }
 
   if ((wcsncmp(buff, L"[Sidenote:", 10) == 0)
     || (wcsncmp(buff, L"*[Sidenote:", 11) == 0))
   {
-    fwprintf(outfile, L"<div class=\"sidenote\">\n");
+    /* fwprintf(outfile, L"<div class=\"sidenote\">\n"); */
     sidenote_mode = 1;
+    sidenote_start = 1;
   }
 }
 
