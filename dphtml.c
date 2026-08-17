@@ -195,9 +195,15 @@ void output_pagenumber(int number_pages, int page, int front_pages, int preface_
       {
       }
       else if (page <= front_pages+preface_pages)
-        fwprintf(outfile, L"</a><span id=\"preface%d\" role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-front_pages, page-front_pages);
+        fwprintf(outfile, L"<span id=\"preface%d\" data-epub-type=\"pagebreak\" role=\"doc-pagebreak\" title=\"%d\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n",
+          page-front_pages,
+          page-front_pages,
+          page-front_pages);
       else
-        fwprintf(outfile, L"<span id=\"page%d\" role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-preface_pages-front_pages+page_offset, page-preface_pages-front_pages+page_offset);
+        fwprintf(outfile, L"<span id=\"page%d\" data-epub-type=\"pagebreak\" role=\"doc-pagebreak\" title=\"%d\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n",
+          page-preface_pages-front_pages+page_offset,
+          page-preface_pages-front_pages+page_offset,
+          page-preface_pages-front_pages+page_offset);
     }
     else
     {
@@ -205,9 +211,15 @@ void output_pagenumber(int number_pages, int page, int front_pages, int preface_
       {
       }
       else if (page-volume_pages <= front_pages+preface_pages)
-        fwprintf(outfile, L"<span id=\"preface_2_%d\" role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-front_pages, page-volume_pages-front_pages);
+        fwprintf(outfile, L"<span id=\"preface_2_%d\" data-epub-type=\"pagebreak\" role=\"doc-pagebreak\" title=\"%d\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n",
+          page-volume_pages-front_pages,
+          page-volume_pages-front_pages,
+          page-volume_pages-front_pages);
       else
-        fwprintf(outfile, L"<span id=\"page_2_%d\" role=\"doc-pagebreak\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n", page-volume_pages-preface_pages-front_pages, page-volume_pages-preface_pages-front_pages);
+        fwprintf(outfile, L"<span id=\"page_2_%d\" data-epub-type=\"pagebreak\" role=\"doc-pagebreak\" title=\"%d\" class=\"pagenum\">[Pg&nbsp;%d]</span>\n",
+          page-volume_pages-preface_pages-front_pages,
+          page-volume_pages-preface_pages-front_pages,
+          page-volume_pages-preface_pages-front_pages);
     }
   }
   else
