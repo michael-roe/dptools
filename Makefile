@@ -1,4 +1,4 @@
-all: dpfoot dphtml dptxt dpcomments dpquotes
+all: dpfoot dphtml dptxt dpcomments dpquotes dpstrip
 
 dphtml: dphtml.o output.o translit.o entity.o
 	gcc -o dphtml dphtml.o output.o translit.o entity.o
@@ -12,11 +12,17 @@ dpfoot: dpfoot.o footnote.o
 dpcomments: dpcomments.o
 	gcc -o dpcomments dpcomments.o
 
+dpstrip: dpstrip.o
+	gcc -o dpstrip dpstrip.o
+
 dpquote: dpquotes.o
 	gcc -o dpquotes dpquotes.o
 
 dpfoot.o: dpfoot.c
 	gcc -c dpfoot.c
+
+dpstrip.o: dpstrip.c
+	gcc -c dpstrip.c
 
 footnote.o: footnote.c
 	gcc -c footnote.c
