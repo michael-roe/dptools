@@ -42,6 +42,16 @@
  * issuing a warning message (based on surrounding white space) if the
  * conversion seems incorrect. The warnings should be checked manually and
  * fixed up if necessary.
+ *
+ * Old books (common at Distributed Proofreaders) sometimes followed a
+ * convention where there is an open quote at the beginning of every line
+ * rather than just at the start of the quotation. We'll usually only need
+ * to convert these to directional quotes if they are in a no-wrap (poetry)
+ * paragraph. The -p option enables this old-style convention for quotation
+ * marks.
+ *
+ * Quote conversion should usually be done after relocating footnotes, because
+ * a footnote could appear in the middle of a block quotation.
  */
 
 int main(int argc, char **argv)
